@@ -363,9 +363,9 @@
             }
           ],
           labels: [
-            'Products',
-            'Services',
-            'Dummy'
+            'Token 1',
+            'Token 2',
+            'Token 3'
           ]
         },
         options: {
