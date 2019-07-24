@@ -136,7 +136,7 @@
                                     <div class="col-lg-4">
                                         <div class="statistic__item statistic__item--green">
                                             <h2 class="number">1 BC Coin = $23</h2>
-                                            <h2 class="number1">1 ETH = $258.79</h2>
+                                            <h2 class="number1" id="number1">1 ETH = $258.79</h2>
                                             <span class="desc">Real-time values of coins</span>
                                             <div class="icon">
                                                 <i class="zmdi zmdi-money"></i>
@@ -303,8 +303,8 @@
     </script>
     <script>
         setInterval(() => {
-            document.getElementsByClassName("number1").innerHTML = "1 ETH = " + ((258.0+Math.random()).toFixed(2))
-        }, 3000)
+            document.getElementById("number1").innerHTML = "1 ETH = " + (257.0 + Math.random()*2).toFixed(2);
+        }, 3000);
     </script>
 
     <!-- Main JS-->
