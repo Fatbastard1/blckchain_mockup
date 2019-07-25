@@ -136,7 +136,7 @@
                                     <div class="col-lg-4">
                                         <div class="statistic__item statistic__item--green">
                                             <h2 class="number">1 BC Coin = $23</h2>
-                                            <h2 class="number1" id="number1">1 ETH = $258.79</h2>
+                                            <h2 class="number" id="number1">1 ETH = $</h2>
                                             <span class="desc">Real-time values of coins</span>
                                             <div class="icon">
                                                 <i class="zmdi zmdi-money"></i>
@@ -309,15 +309,29 @@
         method = "GET",
         url = "https://api.coinmarketcap.com/v1/ticker/ethereum/";
 
-        xhr.open(method, url, true);
-        xhr.onreadystatechange = function () {
-            if(xhr.readyState === 4 && xhr.status === 200) {
-                var object = JSON.parse(this.responseText);
-                console.log(object[0].price_usd);
-                document.getElementById("number1").innerHTML = "1 ETH = $" + parseFloat(object[0].price_usd).toFixed(2);
-            }
-        };
-        xhr.send();
+        function callme(){
+            xhr.open(method, url, true);
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState === 4 && xhr.status === 200) {
+                    var object = JSON.parse(this.responseText);
+                    console.log(object[0].price_usd);
+                    console.log(typeof(object[0].percentage_change_1h));
+                    if(parseFloat(object[0].percent_change_1h) < 0){
+                        document.getElementById("number1").innerHTML = "1 ETH = $" + parseFloat(object[0].price_usd).toFixed(2) + '<img src="images/down.png" style="width:30px;height:30px;">';
+                        
+                    } else {
+                        document.getElementById("number1").innerHTML = "1 ETH = $" + parseFloat(object[0].price_usd).toFixed(2) + '<img src="images/up.png" style="width:30px;height:30px;">';
+
+                    }
+                }
+            };
+            xhr.send();
+        }
+        callme();
+
+        setInterval(() => {
+            callme();
+        }, 5000);
 
     </script>
 
