@@ -302,9 +302,23 @@
     <script src="vendor/select2/select2.min.js">
     </script>
     <script>
-        setInterval(() => {
+        /*setInterval(() => {
             document.getElementById("number1").innerHTML = "1 ETH = " + (257.0 + Math.random()*2).toFixed(2);
-        }, 3000);
+        }, 3000);*/
+        var xhr = new XMLHttpRequest(),
+        method = "GET",
+        url = "https://api.coinmarketcap.com/v1/ticker/ethereum/";
+
+        xhr.open(method, url, true);
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === 4 && xhr.status === 200) {
+                var object = JSON.parse(this.responseText);
+                console.log(object[0].price_usd);
+                document.getElementById("number1").innerHTML = "1 ETH = $" + parseFloat(object[0].price_usd).toFixed(2);
+            }
+        };
+        xhr.send();
+
     </script>
 
     <!-- Main JS-->
